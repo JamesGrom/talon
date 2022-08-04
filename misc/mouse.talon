@@ -2,6 +2,26 @@ control mouse: user.mouse_toggle_control_mouse()
 zoom mouse: user.mouse_toggle_zoom_mouse()
 camera overlay: user.mouse_toggle_camera_overlay()
 run calibration: user.mouse_calibrate()	
+
+key(ctrl-space):
+	user.mouse_scroll_stop()
+	user.mouse_trigger_zoom_mouse()
+key(ctrl-alt-b):
+	user.mouse_toggle_control_mouse()
+key(ctrl-alt-space):
+	mouse_click(1)
+key(ctrl-shift-space):
+	mouse_click(0)
+
+key(ctrl-alt-s:down):
+	user.enableCustomGazeScroll()
+key(ctrl-alt-s:up):
+	user.disableCustomGazeScroll()
+key(ctrl-alt-z:down):
+	user.mouse_drag(0)
+
+
+
 touch: 
 	mouse_click(0)
 	# close the mouse grid if open
@@ -9,7 +29,7 @@ touch:
     	# End any open drags
 	# Touch automatically ends left drags so this is for right drags specifically
 	user.mouse_drag_end()
-
+ 
 righty:
 	mouse_click(1)
 	# close the mouse grid if open

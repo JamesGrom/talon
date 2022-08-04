@@ -1,3 +1,4 @@
+from glob import glob
 import os
 import pathlib
 import subprocess
@@ -126,6 +127,28 @@ class Actions:
     def mouse_toggle_control_mouse():
         """Toggles control mouse"""
         toggle_control(not config.control_mouse)
+    def disableControlMouse():
+        """Toggles control mouse"""
+        toggle_control(False)
+
+    def disableCustomGazeScroll():
+        """Toggles control mouse"""
+        global control_mouse_forced
+        if eye_mouse.tracker is not None and control_mouse_forced:
+            toggle_control(False)
+            control_mouse_forced = False
+
+    def enableCustomGazeScroll():
+        """Toggles control mouse"""
+        global control_mouse_forced
+        if eye_mouse.tracker is not None and not control_mouse_forced:
+            toggle_control(True)
+            control_mouse_forced = True
+
+    def enableControlMouse():
+        """Toggles control mouse"""
+        if(not config.control_mouse):
+            toggle_control(True)
 
     def mouse_toggle_camera_overlay():
         """Toggles camera overlay"""
@@ -147,6 +170,15 @@ class Actions:
         """Trigger zoom mouse if enabled"""
         if eye_zoom_mouse.zoom_mouse.enabled:
             eye_zoom_mouse.zoom_mouse.on_pop(eye_zoom_mouse.zoom_mouse.state)
+
+    # def customMouseDrag(buton:int):
+    #     """Press and hold/release a specific mouse button for dragging"""
+    #     # Clear any existing drags
+    #     self.mouse_drag_end()
+    #     # Start drag
+    #     ctrl.mouse_click(button=button, down=True)
+    #     # triggerZoomMouse
+
 
     def mouse_drag(button: int):
         """Press and hold/release a specific mouse button for dragging"""
