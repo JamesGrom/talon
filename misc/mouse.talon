@@ -5,6 +5,10 @@ run calibration: user.mouse_calibrate()
 
 key(ctrl-space):
 	user.mouse_scroll_stop()
+	key(ctrl:up)
+	user.mouse_trigger_zoom_mouse()
+key(ctrl-cmd-space):
+	user.mouse_scroll_stop()
 	user.mouse_trigger_zoom_mouse()
 key(ctrl-alt-b):
 	user.mouse_toggle_control_mouse()
